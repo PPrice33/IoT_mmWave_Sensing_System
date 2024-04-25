@@ -137,8 +137,7 @@ async def disconnect():
     np.savetxt('labels', nplabels, delimiter=",")
 
 async def start_server():
-    await sio.connect('http://192.168.1.23:3000')
-    # await sio.connect('http://141.233.72.149:3000')
+    await sio.connect('http://141.233.**.***:3000')
     await sio.wait()
 
 if __name__ == '__main__':

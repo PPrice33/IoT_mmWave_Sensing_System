@@ -188,5 +188,4 @@ class Sensor():
         self.parser.parserType = "DoubleCOMPort"
         data = self.parser.readAndParseUartDoubleCOMPort()
         return data
-        ## PAUL THE DATA (TID POSITION) IS BEING PRINTED FROM WITHIN parseTLV.py
 

@@ -40,9 +40,8 @@ yvel = []
 zvel = []
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'priceless'
-# app.config['MQTT_BROKER_URL'] = '192.168.1.23'
-app.config['MQTT_BROKER_URL'] = '141.233.71.190'
+app.config['SECRET_KEY'] = '****'
+app.config['MQTT_BROKER_URL'] = '***.***.**.***'
 
 socketio = SocketIO(app, cors_allowed_origins='*')
 mqtt = Mqtt(app)
@@ -134,7 +133,7 @@ def time_thread(event):
         elapsedtime = math.floor(time.time() - starttime)
         ftime = time.strftime('%H:%M:%S', time.gmtime(elapsedtime))      
         socketio.emit('updateTime', {'up_time': ftime})
-        session.get('https://script.google.com/macros/s/AKfycbzyE0XpDkXLl9QMTkXAA8xyAhdW8E54pXf17zQHIjLqa-dTJPxsPFXmbOqv6CZaBCyv/exec?time=' + str(ftime))
+        session.get('https://script.google.com/macros/s/**********************************/exec?time=' + str(ftime))
         time.sleep(1)
 
 
