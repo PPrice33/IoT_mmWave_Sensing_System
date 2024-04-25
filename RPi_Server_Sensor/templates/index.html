@@ -1,0 +1,85 @@
+<html>
+  <head>
+    <!-- Load jquery, socketio, plotly.js into the DOM -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js" integrity="sha512-aMGMvNYu8Ue4G+fHa359jcPb1u+ytAF+P2SCb+PxrjCdO3n3ZTxJ30zuH39rimUggmTwmh2u7wvQsDTHESnmfQ==" crossorigin="anonymous"></script>
+    <script src='https://cdn.plot.ly/plotly-2.27.0.min.js'></script>
+    <!-- Include CSS -->
+    <link href="{{url_for('static', filename = 'css/app.css')}}" rel="stylesheet">
+  </head>
+
+  <body style="background-color: black;">
+    <!-- Include JavaScript -->
+    <script type="text/javascript" src="{{ url_for('static', filename = 'js/app.js') }}"></script>
+    <div class="topnav">
+      <h1>Visualizer for mmWave Sensor</h1>
+    </div>
+      <div class="parent1">
+        <div class="card1">
+          <table>
+            <tr>
+              <td>XPOS: <span id="xpos">0</span></td>
+            </tr>
+            <tr>
+              <td>YPOS: <span id="ypos">0</span></td>
+            </tr>
+            <tr>
+              <td>ZPOS: <span id="zpos">0</span></td>
+            </tr>
+            <tr>
+              <td>XVEL: <span id="xvel">0</span></td>
+            </tr>
+            <tr>
+              <td>YVEL: <span id="yvel">0</span></td>
+            </tr>
+            <tr>
+              <td>ZVEL: <span id="zvel">0</span></td>
+            </tr>
+            <tr>
+              <td>IDs: <span id="ids">0</span></td>
+            </tr>
+            <tr>
+              <td>ON ZONES: <span id="onzones">0</span></td>
+            </tr>
+            <tr>
+              <td>OFF ZONES: <span id="offzones">0</span></td>
+            </tr>
+          </table>
+        </div>
+        <div class="parent2">
+          <div class="card2" id='myChart'><!-- Plotly chart will be drawn inside this DIV --></div>
+          <div class="card3">
+            <div class="button">
+              <button id="xview">Side View</button>
+              <button id="yview">Front View</button>
+              <button id="zview">Top View</button>
+              <br>
+              <br>
+              <button id="resetview">Reset View</button>
+              <button id="setmarker">Toggle Marker</button>
+            </div>
+          </div>
+        </div>
+          <div class="card4">
+            <div style="padding-bottom: 5; font-size: x-large;">ON/OFF</div>
+            <label class="switch">
+              <input id="runswitch" type="checkbox"/>
+            </label>
+            <div style="padding-bottom: 5; font-size: large;">
+              <br>
+              <br>
+              <br>
+              <br>
+              <div>NUM CLIENTS</div>
+              <div style="font-size: xx-large;">[<span id="user_counter">0</span>]</div>
+              <br>
+              <br>
+              <br>
+              <br>
+              <div>SENSOR UP TIME</div>
+              <span id="time" style="font-size: x-large;">00:00:00</span>
+            </div>
+          </div>
+      </div>
+  </body>
+</html>

@@ -1,0 +1,155 @@
+@font-face {
+  font-family: Retro;
+  src: url(Retro_Gaming.ttf);
+}
+
+* {
+  font-family: Retro;
+  color: white;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: black;
+  text-align: center;
+  color: white;
+}
+
+.parent1 {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.parent2 {
+  display: flex;
+  flex-direction: column;
+}
+
+.card1 {
+  justify-content: left;
+  width: 200;
+  background: black;
+}
+
+@media screen and (max-width:990px) {
+  .card1 {width: 700;}
+  .parent1 { flex-wrap: wrap; }
+}
+
+.card2 {
+  width: 700;
+  background: black;
+  color: white;
+  padding-bottom: 10px;
+}
+
+.card3 {
+  height: 100;
+  width: 700;
+  background: black;
+}
+
+.card4 {
+  width: 150;
+  background: black;
+}
+
+label {
+  transform-origin: -10px;
+  display: inside;
+}
+
+input[type="checkbox"] {
+  appearance: none;
+  position: relative;
+  background-color: #680000;
+  margin: 0;
+  width: 75px;
+  height: 75px;
+
+  &:before,
+  &:after {
+  content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      box-sizing: content-box;
+  }
+
+  &:before {
+      top: -5px;
+      left: 0;
+      border-top: 5px white solid;
+      border-bottom: 5px white solid;
+  }
+
+  &:after {
+      left: -5px;
+      top: 0;
+      border-left: 5px white solid;
+      border-right: 5px white solid;
+  }
+}
+
+@keyframes blinker {
+  50% {
+    background-color: #00682b00;
+  }
+}
+
+input[type="checkbox"]:checked {
+  animation: blinker 1s step-start infinite;
+  background-color: #00682b;
+}
+
+button {
+  appearance: none;
+}
+
+#xview, #yview, #zview, #resetview, #setmarker {
+  display: inline-block;
+  position: relative;
+  font-size: large;
+  text-align: center;
+  background-color: #ffffff00;
+  margin: 0;
+  width: 200px;
+  height: 50px;
+  place-content: center;
+  color: white;
+
+  &:focus {
+    background-color: rgba(255, 255, 255, 0.201);
+  }
+
+  &:active {
+    background-color: black;
+  }
+
+  &:before,
+  &:after {
+  content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      box-sizing: content-box;
+  }
+
+  &:before {
+      top: -3px;
+      left: 0;
+      border-top: 3px white solid;
+      border-bottom: 3px white solid;
+  }
+
+  &:after {
+      left: -3px;
+      top: 0;
+      border-left: 3px white solid;
+      border-right: 3px white solid;
+  }
+}
