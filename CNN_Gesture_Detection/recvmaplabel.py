@@ -4,14 +4,19 @@ import numpy as np
 from numpy import savez_compressed
 import cv2
 import math
+import csv
+import logging
 
 import mediapipe as mp
 from mediapipe.tasks import python
 from mediapipe.tasks.python import vision
 from mediapipe import solutions
 from mediapipe.framework.formats import landmark_pb2
+"""
+For Recording and Saving Frames from mmWave and Creating and Saving Labels for Each Frame as a result of Google Media Pipe Pose Logic 
+"""
+logging.basicConfig(filename='rl_output.log', level=logging.INFO)
 
-labels = []
 def draw_landmarks_on_image(rgb_image, detection_result):
     pose_landmarks_list = detection_result.pose_landmarks
     annotated_image = np.copy(rgb_image)
@@ -19,24 +24,35 @@ def draw_landmarks_on_image(rgb_image, detection_result):
     # Loop through the detected poses to visualize.
     for idx in range(len(pose_landmarks_list)):
         pose_landmarks = pose_landmarks_list[idx]
+        # RIGHT AND LEFT SEPERATE
         if (
-            (pose_landmarks[15].y > 0.4) # INCREASE THIS SO LABELING HAPPENS A BIT HIGHER
-            and (pose_landmarks[15].y < 0.65)
-            and (pose_landmarks[16].y > 0.4)
-            and (pose_landmarks[16].y < 0.65)
+            (pose_landmarks[16].y > 0)
+            and (pose_landmarks[16].y < 0.7)
         ):
-            if (
-                (pose_landmarks[15].z > -0.5)
-                and (pose_landmarks[15].z < 0.5)
-                and (pose_landmarks[16].z > -0.5)
-                and (pose_landmarks[16].z < 0.5)
-            ):
-                print("Both Arms!")
-                labels.append(1)
-                # maybe append label to csv file
+            print("1")
+            logging.info("1")
+        elif (
+            (pose_landmarks[15].y > 0)
+            and (pose_landmarks[15].y < 0.7)
+        ):
+            print("2")
+            logging.info("2")
         else:
             print("0")
-            labels.append(0)
+            logging.info("0")
+
+        # BOTH ARMS TOGETHER
+        # if (
+        #     (pose_landmarks[15].y > 0)
+        #     and (pose_landmarks[15].y < 0.6)
+        #     and (pose_landmarks[16].y > 0)
+        #     and (pose_landmarks[16].y < 0.6)
+        # ):
+        #     print("1")
+        #     logging.info("1")
+        # else:
+        #     print("0")
+        #     logging.info("0")
 
         # Draw the pose landmarks.
         pose_landmarks_proto = landmark_pb2.NormalizedLandmarkList()
@@ -77,7 +93,7 @@ FRAMESBUFF = []
 grid = np.ones((200,420,1), dtype=np.uint8)
 j = 1
 
-@sio.on('updateSensorData') # change this to update Sensor Data and parse the X,Y,Z Arrays, the arrays are then used for the nparrays.py code to gen image
+@sio.on('updateSensorData') 
 def response(data):
     global j, FRAMESBUFF, grid
     grid[:,:] = [0]
@@ -90,7 +106,7 @@ def response(data):
 
     i = 0
     while i < len(XPOINTS):
-        if (ZPOINTS[i] > 0):
+        if (ZPOINTS[i] > 0) and (abs(XPOINTS[i]) < 2):
             grid[199-math.floor(100*ZPOINTS[i]),math.floor(100*XPOINTS[i])+219] = [255]
         i += 1
 
@@ -102,7 +118,7 @@ def response(data):
     np.save('MLFrames/frame'+str(j)+'.npy', grid)
     j += 1
 
-    # resizedgrid = cv2.resize(grid, (4000, 2000), 0, 0, interpolation = cv2.INTER_NEAREST)
+    # resizedgrid = cv2.resize(grid, (840, 400), 0, 0, interpolation = cv2.INTER_NEAREST)
         
     # Capture frame
     ret, frame = cap.read()
@@ -132,12 +148,10 @@ async def disconnect():
     print('Disconnected from Server')
     # When everything is done, release the capture
     cap.release()
-    cv2.destroyAllWindows()
-    nplabels = np.array(labels, dtype=np.int8)
-    np.savetxt('labels', nplabels, delimiter=",")
+    cv2.destroyAllWindows() 
 
 async def start_server():
-    await sio.connect('http://141.233.**.***:3000')
+    await sio.connect('http://141.233.xx.xxx:3000')
     await sio.wait()
 
 if __name__ == '__main__':
