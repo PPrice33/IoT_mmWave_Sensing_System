@@ -1,3 +1,6 @@
+# FOR DATA COLLECTION
+# MAIN FUNCTION IS AFTER "@sio.on('updateSensorData')", THIS RUNS EVERYTIME A FRAME IS RECEIVED FROM THE RPI
+
 import socketio
 import asyncio
 import numpy as np

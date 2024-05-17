@@ -1,3 +1,6 @@
+# SERVES WEBPAGE AND RUNS AND COLLECTS SENSOR DATA
+# MAIN SCRIPT TO RUN
+
 from flask import Flask, render_template, request
 from flask_socketio import SocketIO
 from flask_mqtt import Mqtt

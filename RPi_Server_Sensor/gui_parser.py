@@ -1,5 +1,5 @@
 # ----- Imports -------------------------------------------------------
-
+# NECESSARY FOR SENSOR4RPI
 # Standard Imports
 import struct
 import serial

@@ -1,3 +1,5 @@
+# MAIN SCRIPT FOR TRAINING ON DATA, VALIDATES AT END
+
 from MLDataRead import get_data
 import numpy as np
 from numpy import load

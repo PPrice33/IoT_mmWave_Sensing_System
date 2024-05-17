@@ -1,3 +1,5 @@
+# FOR APPLYING TRAINED ML WIEGHTS TO LIVE DATA
+
 import socketio
 import asyncio
 import numpy as np

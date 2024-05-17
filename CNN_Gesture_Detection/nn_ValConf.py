@@ -1,3 +1,5 @@
+# FOR GENERATING CONFUSION MATRIX, FROM VALIDATION DATA
+
 from MLDataRead import get_data
 import numpy as np
 import pandas as pd

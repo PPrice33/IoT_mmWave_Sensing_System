@@ -1,3 +1,5 @@
+# NECESSARY FOR SENSOR4RPI
+
 # x843 Demo Names
 DEMO_NAME_OOB = 'SDK Out of Box Demo'
 DEMO_NAME_3DPC = '3D People Tracking'

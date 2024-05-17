@@ -1,3 +1,5 @@
+# NECESSARY FOR SENSOR4RPI
+
 import struct
 import sys
 import serial

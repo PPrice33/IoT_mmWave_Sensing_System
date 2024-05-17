@@ -1,3 +1,5 @@
+# FOR ACCESSING SENSOR DATA AND PARSING OUT THE REQUIRED DATA
+
 import sys
 from gui_parser import uartParser
 
@@ -186,6 +188,6 @@ class Sensor():
     def readData(self):
         #data_rec = self.parser.tlvHeader(data)
         self.parser.parserType = "DoubleCOMPort"
-        data = self.parser.readAndParseUartDoubleCOMPort()
+        data = self.parser.readAndParseUartDoubleCOMPort() # FOLLOW THIS BACK THROUGH 'CONNECTING FILES' TO SEE WHERE THE BASE DATA INFO IS PARSED
         return data
 
